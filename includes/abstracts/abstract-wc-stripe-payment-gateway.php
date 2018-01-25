@@ -533,6 +533,12 @@ abstract class WC_Stripe_Payment_Gateway extends WC_Payment_Gateway_CC {
 
 			if ( $source_id ) {
 				$stripe_source = $source_id;
+			} else {
+				$default_source = $stripe_customer->get_default_source();
+
+				if ( $default_source ) {
+					$stripe_source = $default_source;
+				}
 			}
 		}
 
